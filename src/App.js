@@ -1,28 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Clicker from './components/Clicker';
+import ClickerTwo from './components/ClickerTwo'
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [isClicker, setClicker] = useState(false);
 
-  function increment() {
-    setCount(count + 2)
-  }
+  // componentDidMount
+  useEffect(() => {
+    console.log('Render');
+  }, []);
 
-  function decrement() {
-    setCount(count - 1)
-  }
+  // componentDidUpdated
+  useEffect(() => {
+    console.log(isClicker);
+  }, [isClicker])
 
-  function reset() {
-    setCount(0)
-  }
+  // componentWilUnmount
+  useEffect(() => {
+
+    return () => console.log('Hello');
+  }, [isClicker])
+
+  // componentDidMount() {}
+  // componentDidUpdated() {}
+  // componentWilUnmount() {}
+  // =====================//
+  // ------ useEffect -----//
 
   return (
-    <div className="card">
-      <h1 className="card-title text-center">Counter: {count}</h1>
-      <div className="card-body d-flex justify-content-between">
-        <button className="btn btn-info" onClick={increment}>Increment +</button>
-        <button className="btn btn-secondary" onClick={decrement}>Decrement -</button>
-        <button className="btn btn-danger" onClick={reset}>Reset 0</button>
+    <div className='App'>
+      <div className="card">
+        <h1 className='card-title'>Hello world</h1>
+        <button className='btn btn-success' onClick={() => setClicker(!isClicker)}>Togel Clicker</button>
+        {isClicker && <Clicker />}
       </div>
+      <ClickerTwo />
     </div>
   );
 }
